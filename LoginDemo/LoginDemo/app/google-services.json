@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "947093291236",
-    "firebase_url": "https://logindemo-eb631.firebaseio.com",
-    "project_id": "logindemo-eb631",
-    "storage_bucket": "logindemo-eb631.appspot.com"
+    "project_number": "712549773649",
+    "firebase_url": "https://utmreserve.firebaseio.com",
+    "project_id": "utmreserve",
+    "storage_bucket": "utmreserve.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:947093291236:android:666edd7b7681b7f4b46cf1",
+        "mobilesdk_app_id": "1:712549773649:android:b96cbf8d799f131cdfe370",
         "android_client_info": {
-          "package_name": "com.example.logindemo"
+          "package_name": "com.example.utmreserve"
         }
       },
       "oauth_client": [
         {
-          "client_id": "947093291236-ogggek5i5s2t9urmdhgodjhpvai913p4.apps.googleusercontent.com",
+          "client_id": "712549773649-8gmr2pkehs0l08ar7ccj1v3qhkvt305u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.utmreserve",
+            "certificate_hash": "b4a00708cfe7e9f7661a3824e37b57df190b2714"
+          }
+        },
+        {
+          "client_id": "712549773649-t5l7qt7b7s4mscif5ur50uab5amh2hb2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAvb6QyRYgdUuHoViaQhrqlneF_8oFrX5A"
+          "current_key": "AIzaSyBzdFIKY1n0NUS3M-hkSXszdmGIQ5avXH8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "947093291236-ogggek5i5s2t9urmdhgodjhpvai913p4.apps.googleusercontent.com",
+              "client_id": "712549773649-t5l7qt7b7s4mscif5ur50uab5amh2hb2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

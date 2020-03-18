@@ -1,4 +1,4 @@
-package com.example.logindemo;
+package com.example.utmreserve;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,11 +65,11 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
     private void setupUIViews(){
-        userName = (EditText) findViewById(R.id.etUserName);
-        userPassword = (EditText)findViewById(R.id.etUserPassword);
-        userEmail = (EditText)findViewById(R.id.etUserEmail);
-        regButton = (Button)findViewById(R.id.btnRegister);
-        userLogin = (TextView)findViewById(R.id.tvUserLogin);
+        userName = findViewById(R.id.etUserName);
+        userPassword = findViewById(R.id.etUserPassword);
+        userEmail = findViewById(R.id.etUserEmail);
+        regButton = findViewById(R.id.btnRegister);
+        userLogin = findViewById(R.id.tvUserLogin);
     }
 
     private Boolean validate(){
@@ -85,6 +85,6 @@ public class RegistrationActivity extends AppCompatActivity {
             result = true;
         }
 
-            return result;
+        return result;
     }
 }
