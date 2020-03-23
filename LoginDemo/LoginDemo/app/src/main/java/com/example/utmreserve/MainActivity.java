@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         Name = (EditText)findViewById(R.id.etName);
         Password = (EditText)findViewById(R.id.etPassword);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate(String userName, String userPassword) {
 
-        progressDialog.setMessage("You can subscribe to my channel until you are verified!");
+        progressDialog.setMessage("Please Wait It May Take Some Time :)");
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(userName, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -88,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     checkEmailVerification();
+                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                    Toast ToastMessage = Toast.makeText(getApplicationContext(),"WELCOME",Toast.LENGTH_SHORT);
+                    View toastView = ToastMessage.getView();
+                    toastView.setBackgroundResource(R.layout.toast_background);
+                    ToastMessage.show();
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                     counter--;

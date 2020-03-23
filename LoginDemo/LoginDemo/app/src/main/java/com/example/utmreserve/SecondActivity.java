@@ -19,33 +19,94 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import android.widget.MediaController;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
+import android.net.Uri;
 
 public class SecondActivity extends AppCompatActivity {
-
+    Button button6, button8, button9;
     private FirebaseAuth firebaseAuth;
-    private Button logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        VideoView videoView = findViewById(R.id.videoView2);
+        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.video;
+        Uri uri = Uri.parse(videoPath);
+        videoView.setVideoURI(uri);
+        videoView.start();
 
-        logout = (Button)findViewById(R.id.btnLogout);
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+
+        button6 = (Button) findViewById(R.id.button6);
+        button8 = (Button) findViewById(R.id.button8);
+        button9 = (Button) findViewById(R.id.button9);
+
+        button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Logout();
+                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To PUSAT SUKAN UTMKL", Toast.LENGTH_SHORT);
+                View toastView = ToastMessage.getView();
+                toastView.setBackgroundResource(R.layout.toast_background);
+                ToastMessage.show();
+
             }
         });
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To Facilities Reservation", Toast.LENGTH_SHORT);
+                View toastView = ToastMessage.getView();
+                toastView.setBackgroundResource(R.layout.toast_background);
+                ToastMessage.show();
+            }
+
+        });
+
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome TO Vehichle Reservation System", Toast.LENGTH_SHORT);
+                View toastView = ToastMessage.getView();
+                toastView.setBackgroundResource(R.layout.toast_background);
+                ToastMessage.show();
+
+            }
+        });
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
+        private void Logout(){
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(SecondActivity.this, MainActivity.class));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
-    private void Logout(){
-        firebaseAuth.signOut();
-        finish();
-        startActivity(new Intent(SecondActivity.this, MainActivity.class));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch(item.getItemId()){
+            case R.id.logoutMenu:{
+                Logout();
+                break;
+            }
+            case R.id.profileMenu:
+                startActivity(new Intent(SecondActivity.this, ProfileActivity.class));
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
+
