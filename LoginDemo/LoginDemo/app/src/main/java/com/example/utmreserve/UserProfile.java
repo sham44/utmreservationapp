@@ -1,11 +1,9 @@
 package com.example.utmreserve;
 
-
-
 public class UserProfile {
 
-    public String userEmail;
-    public String userName;
+    private String userEmail;
+    private String userName;
 
     public UserProfile(){
     }

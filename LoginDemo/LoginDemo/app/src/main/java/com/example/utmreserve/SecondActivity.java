@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,7 +55,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To PUSAT SUKAN UTMKL", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                toastView.setBackgroundResource(R.layout.toast_background);
+                //toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
 
             }
@@ -64,7 +65,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To Facilities Reservation", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                toastView.setBackgroundResource(R.layout.toast_background);
+                //toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
             }
 
@@ -75,7 +76,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome TO Vehichle Reservation System", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                toastView.setBackgroundResource(R.layout.toast_background);
+                //toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
 
             }
@@ -94,16 +95,17 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
+            case R.id.profileMenu: {
+                startActivity(new Intent(SecondActivity.this, ProfileActivity.class));
+                break;
+            }
+
             case R.id.logoutMenu:{
                 Logout();
                 break;
             }
-            case R.id.profileMenu:
-                startActivity(new Intent(SecondActivity.this, ProfileActivity.class));
-                break;
 
         }
         return super.onOptionsItemSelected(item);

@@ -54,10 +54,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 sendEmailVerification();
-                                sendUserData();
-                                firebaseAuth.signOut();
-                                Toast.makeText(RegistrationActivity.this, "Upload complete!", Toast.LENGTH_SHORT).show();
-                                finish();
+                                //sendUserData();
+                                //firebaseAuth.signOut();
+                                //Toast.makeText(RegistrationActivity.this, "Upload complete!", Toast.LENGTH_SHORT).show();
+                                //finish();
                             } else {
                                 Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
