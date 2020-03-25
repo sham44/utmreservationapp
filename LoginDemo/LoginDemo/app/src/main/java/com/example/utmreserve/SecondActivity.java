@@ -53,9 +53,9 @@ public class SecondActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To PUSAT SUKAN UTMKL", Toast.LENGTH_SHORT);
+                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To Sports Facilities Reservation", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                //toastView.setBackgroundResource(R.layout.toast_background);
+                toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
 
             }
@@ -63,9 +63,9 @@ public class SecondActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To Facilities Reservation", Toast.LENGTH_SHORT);
+                Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome To Logistics Reservation", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                //toastView.setBackgroundResource(R.layout.toast_background);
+                toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
             }
 
@@ -76,7 +76,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast ToastMessage = Toast.makeText(getApplicationContext(), "Welcome TO Vehichle Reservation System", Toast.LENGTH_SHORT);
                 View toastView = ToastMessage.getView();
-                //toastView.setBackgroundResource(R.layout.toast_background);
+                toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
 
             }

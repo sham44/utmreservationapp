@@ -8,19 +8,19 @@
     tools:context=".RegistrationActivity">
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etNameUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Username"
-        android:textColorHint="#F0FFFFFF"
+        android:inputType="textPersonName"
         android:textColor="#EEFFFFFF"
+        android:textColorHint="#F0FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.466" />
 
     <EditText
         android:id="@+id/etUserEmail"
@@ -29,31 +29,46 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColorHint="#F0FFFFFF"
         android:textColor="#EEFFFFFF"
+        android:textColorHint="#F0FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUserName"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintTop_toBottomOf="@+id/etNameUpdate"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <EditText
+        android:id="@+id/etUserID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Matric ID"
+        android:inputType="textPassword"
+        android:textColor="#EEFFFFFF"
+        android:textColorHint="#F0FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUserEmail"
+        app:layout_constraintVertical_bias="0.249" />
 
     <EditText
         android:id="@+id/etUserPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="Password"
-        android:textColorHint="#F0FFFFFF"
+        android:inputType="textPassword"
         android:textColor="#EEFFFFFF"
+        android:textColorHint="#F0FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserEmail"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.045" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
@@ -62,7 +77,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserPassword"
-        app:layout_constraintVertical_bias="0.249" />
+        app:layout_constraintVertical_bias="0.429" />
 
     <TextView
         android:id="@+id/tvUserLogin"
@@ -73,7 +88,23 @@
         android:textSize="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSave"
+        app:layout_constraintVertical_bias="0.497" />
+
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tvUserLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185"
+        app:srcCompat="@drawable/applogo"
+        tools:srcCompat="@tools:sample/avatars"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

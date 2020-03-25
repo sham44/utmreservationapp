@@ -22,6 +22,8 @@
         <activity android:name=".PasswordActivity"></activity>
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".SecondActivity" />
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".UpdatePassword" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

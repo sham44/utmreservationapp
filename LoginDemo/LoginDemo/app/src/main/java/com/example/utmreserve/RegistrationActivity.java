@@ -4,41 +4,54 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.graphics.Bitmap;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-public class RegistrationActivity extends AppCompatActivity {
+import java.io.IOException;
 
-    private EditText userName, userPassword, userEmail;
+public class  RegistrationActivity extends AppCompatActivity {
+
+    private EditText userName, userPassword, userEmail, userID;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
+    private static int PICK_IMAGE = 123;
+    private ImageView userProfilePic;
     String name, email, password;
+    Uri imagePath;
+    private Bundle savedInstanceState;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         getSupportActionBar().hide();
         setupUIViews();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +60,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     //Upload
                     String user_email = userEmail.getText().toString().trim();
                     String user_password = userPassword.getText().toString().trim();
+
 
                     firebaseAuth.createUserWithEmailAndPassword(user_email, user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -61,11 +75,9 @@ public class RegistrationActivity extends AppCompatActivity {
                             } else {
                                 Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
-
                         }
                     });
                 }
-
             }
         });
 
@@ -77,29 +89,34 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void setupUIViews() {
-        userName = findViewById(R.id.etUserName);
-        userPassword = findViewById(R.id.etUserPassword);
-        userEmail = findViewById(R.id.etUserEmail);
-        regButton = findViewById(R.id.btnRegister);
-        userLogin = findViewById(R.id.tvUserLogin);
-    }
 
-    private Boolean validate() {
-        Boolean result = false;
 
-        name = userName.getText().toString();
-        password = userPassword.getText().toString();
-        email = userEmail.getText().toString();
+            private void setupUIViews () {
+                userName = findViewById(R.id.etNameUpdate);
+                userPassword = findViewById(R.id.etUserPassword);
+                userEmail = findViewById(R.id.etUserEmail);
+                regButton = findViewById(R.id.btnSave);
+                userLogin = findViewById(R.id.tvUserLogin);
+                userProfilePic = (ImageView) findViewById(R.id.ivProfile);
+            }
 
-        if (name.isEmpty() && password.isEmpty() || email.isEmpty()) {
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
-        } else {
-            result = true;
+
+        private Boolean validate () {
+            Boolean result = false;
+
+            name = userName.getText().toString();
+            password = userPassword.getText().toString();
+
+            email = userEmail.getText().toString();
+
+            if (name.isEmpty() && password.isEmpty() || email.isEmpty()) {
+                Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            } else {
+                result = true;
+            }
+
+            return result;
         }
-
-        return result;
-    }
 
 
     private void sendEmailVerification() {
@@ -130,3 +147,4 @@ public class RegistrationActivity extends AppCompatActivity {
         myRef.setValue(userProfile);
     }
 }
+
