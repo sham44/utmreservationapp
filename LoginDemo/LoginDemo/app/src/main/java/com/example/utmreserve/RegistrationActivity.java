@@ -16,12 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -36,9 +40,23 @@ public class  RegistrationActivity extends AppCompatActivity {
     String name, email, password;
     Uri imagePath;
     private Bundle savedInstanceState;
+    private FirebaseStorage firebaseStorage;
+    private StorageReference storageReference;
 
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data.getData() != null){
+            imagePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
+                userProfilePic.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 
     @Override
@@ -50,7 +68,19 @@ public class  RegistrationActivity extends AppCompatActivity {
         setupUIViews();
 
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseStorage=FirebaseStorage.getInstance();
 
+        StorageReference storageReference = firebaseStorage.getReference();
+
+        userProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("images/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE);
+            }
+        });
 
 
         regButton.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +139,7 @@ public class  RegistrationActivity extends AppCompatActivity {
 
             email = userEmail.getText().toString();
 
-            if (name.isEmpty() && password.isEmpty() || email.isEmpty()) {
+            if (name.isEmpty() && password.isEmpty() || email.isEmpty()|| imagePath == null) {
                 Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
             } else {
                 result = true;
@@ -145,6 +175,19 @@ public class  RegistrationActivity extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserProfile userProfile = new UserProfile(email, name);
         myRef.setValue(userProfile);
+        StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
+        UploadTask uploadTask = imageReference.putFile(imagePath);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegistrationActivity.this, "Upload failed!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                Toast.makeText(RegistrationActivity.this, "Upload successful!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 
