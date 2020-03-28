@@ -89,11 +89,10 @@ public class MainActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     checkEmailVerification();
-                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
-                    Toast ToastMessage = Toast.makeText(getApplicationContext(),"WELCOME",Toast.LENGTH_SHORT);
-                    View toastView = ToastMessage.getView();
-                    toastView.setBackgroundResource(R.layout.toast_background);
-                    ToastMessage.show();
+//                    Toast ToastMessage = Toast.makeText(getApplicationContext(),"WELCOME",Toast.LENGTH_SHORT);
+//                    View toastView = ToastMessage.getView();
+//                    toastView.setBackgroundResource(R.layout.toast_background);
+//                    ToastMessage.show();
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                     counter--;
