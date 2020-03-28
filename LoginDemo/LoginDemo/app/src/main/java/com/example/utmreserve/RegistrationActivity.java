@@ -1,6 +1,7 @@
 package com.example.utmreserve;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -37,15 +38,15 @@ public class  RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private static int PICK_IMAGE = 123;
     private ImageView userProfilePic;
-    String name, email, password;
+    String name, email, password, id;
     Uri imagePath;
-    private Bundle savedInstanceState;
+    //private Bundle savedInstanceState;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data.getData() != null){
             imagePath = data.getData();
             try {
@@ -61,7 +62,7 @@ public class  RegistrationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.savedInstanceState = savedInstanceState;
+        //this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         getSupportActionBar().hide();
@@ -69,14 +70,13 @@ public class  RegistrationActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage=FirebaseStorage.getInstance();
-
-        StorageReference storageReference = firebaseStorage.getReference();
+        storageReference = firebaseStorage.getReference();
 
         userProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setType("images/*");
+                intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE);
             }
@@ -121,32 +121,33 @@ public class  RegistrationActivity extends AppCompatActivity {
 
 
 
-            private void setupUIViews () {
-                userName = findViewById(R.id.etNameUpdate);
-                userPassword = findViewById(R.id.etUserPassword);
-                userEmail = findViewById(R.id.etUserEmail);
-                regButton = findViewById(R.id.btnSave);
-                userLogin = findViewById(R.id.tvUserLogin);
-                userProfilePic = (ImageView) findViewById(R.id.ivProfile);
-            }
+    private void setupUIViews () {
+        userName = findViewById(R.id.etNameUpdate);
+        userPassword = findViewById(R.id.etUserPassword);
+        userEmail = findViewById(R.id.etUserEmail);
+        regButton = findViewById(R.id.btnSave);
+        userLogin = findViewById(R.id.tvUserLogin);
+        userProfilePic = (ImageView) findViewById(R.id.ivProfile);
+        userID = findViewById(R.id.etUserID);
+    }
 
 
-        private Boolean validate () {
-            Boolean result = false;
+    private Boolean validate () {
+        Boolean result = false;
 
-            name = userName.getText().toString();
-            password = userPassword.getText().toString();
+        name = userName.getText().toString();
+        password = userPassword.getText().toString();
+        email = userEmail.getText().toString();
+        id = userID.getText().toString();
 
-            email = userEmail.getText().toString();
-
-            if (name.isEmpty() && password.isEmpty() || email.isEmpty()|| imagePath == null) {
-                Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
-            } else {
-                result = true;
-            }
-
-            return result;
+        if (name.isEmpty() && password.isEmpty() || email.isEmpty()|| id.isEmpty() || imagePath == null) {
+            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+        } else {
+            result = true;
         }
+
+        return result;
+    }
 
 
     private void sendEmailVerification() {
@@ -172,9 +173,8 @@ public class  RegistrationActivity extends AppCompatActivity {
 
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(email, name);
-        myRef.setValue(userProfile);
+        DatabaseReference myRef = firebaseDatabase.getReference("UserInfo").child(firebaseAuth.getUid());
+
         StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
         UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -188,6 +188,9 @@ public class  RegistrationActivity extends AppCompatActivity {
                 Toast.makeText(RegistrationActivity.this, "Upload successful!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        UserProfile userProfile = new UserProfile(email, name, id);
+        myRef.setValue(userProfile);
     }
 }
 

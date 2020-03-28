@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Matric ID"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:textColor="#EEFFFFFF"
         android:textColorHint="#F0FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
