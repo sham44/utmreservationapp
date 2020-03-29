@@ -23,14 +23,13 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".UpdateProfile" />
+        <activity android:name=".sports" />
+        <activity android:name=".vrms" />
+        <activity android:name=".logistics" />
         <activity android:name=".UpdatePassword" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

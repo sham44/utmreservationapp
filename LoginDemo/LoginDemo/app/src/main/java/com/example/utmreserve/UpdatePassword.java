@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UpdatePassword extends AppCompatActivity {
     private Button update;
-    private EditText newPassword, newEmail;
+    private EditText newPassword;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
 
@@ -29,7 +29,6 @@ public class UpdatePassword extends AppCompatActivity {
 
         update = findViewById(R.id.btnUpdatePassword);
         newPassword = findViewById(R.id.etNewPassword);
-        newEmail = findViewById(R.id.etNewEmail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -46,18 +45,6 @@ public class UpdatePassword extends AppCompatActivity {
                             finish();
                         } else {
                             Toast.makeText(UpdatePassword.this, "Password Update Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                String userEmailNew = newEmail.getText().toString();
-                firebaseUser.updateEmail(userEmailNew).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(UpdatePassword.this, "Email Changed", Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(UpdatePassword.this, "Email Update Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

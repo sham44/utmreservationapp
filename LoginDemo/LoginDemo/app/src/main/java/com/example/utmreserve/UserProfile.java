@@ -1,5 +1,6 @@
 package com.example.utmreserve;
 
+
 public class UserProfile {
 
     private String userEmail;
@@ -10,18 +11,20 @@ public class UserProfile {
 
     }
 
+
     public UserProfile(String userEmail, String userName) {
 
         this.userEmail = userEmail;
         this.userName = userName;
+        this.userID = userID;
     }
 
     public UserProfile(String userEmail, String userName, String userID) {
 
         this.userEmail = userEmail;
         this.userName = userName;
-        this.userID = userID;
     }
+
 
 
     public String getUserEmail() {

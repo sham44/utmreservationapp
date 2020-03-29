@@ -127,7 +127,7 @@ public class  RegistrationActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.etUserEmail);
         regButton = findViewById(R.id.btnSave);
         userLogin = findViewById(R.id.tvUserLogin);
-        userProfilePic = (ImageView) findViewById(R.id.ivProfile);
+        userProfilePic = findViewById(R.id.ivProfile);
         userID = findViewById(R.id.etUserID);
     }
 

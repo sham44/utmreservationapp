@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ import java.io.IOException;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText newUserName, newUserID;
+    private EditText newUserName;
     private TextView newUserEmail;
     private Button save;
     private FirebaseAuth firebaseAuth;
@@ -65,8 +66,7 @@ public class UpdateProfile extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
 
         newUserName = findViewById(R.id.etNameUpdate);
-        newUserEmail = findViewById(R.id.etEmailUpdate);
-        newUserID = findViewById(R.id.etIDUpdate);
+        newUserEmail=findViewById(R.id.etEmailUpdate);
         save = findViewById(R.id.btnSave);
         updateProfilePic = findViewById(R.id.ivProfileUpdate);
 
@@ -119,7 +119,7 @@ public class UpdateProfile extends AppCompatActivity {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
                 newUserName.setText(userProfile.getUserName());
                 newUserEmail.setText(userProfile.getUserEmail());
-                newUserID.setText(userProfile.getUserID());
+
             }
 
             @Override
@@ -131,10 +131,11 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = newUserName.getText().toString();
-                String email = newUserEmail.getText().toString();
-                String id = newUserID.getText().toString();
+                String email=newUserEmail.getText().toString();
 
-                UserProfile userProfile = new UserProfile(email, name, id);
+
+                UserProfile userProfile = new UserProfile(name,email);
+
                 databaseReference.setValue(userProfile);
 
                 StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
