@@ -35,7 +35,7 @@ import java.io.IOException;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText newUserName;
+    private EditText newUserName, newUserID;
     private TextView newUserEmail;
     private Button save;
     private FirebaseAuth firebaseAuth;
@@ -65,7 +65,8 @@ public class UpdateProfile extends AppCompatActivity {
         setContentView(R.layout.activity_update_profile);
 
         newUserName = findViewById(R.id.etNameUpdate);
-        newUserEmail=findViewById(R.id.etEmailUpdate);
+        newUserEmail = findViewById(R.id.etEmailUpdate);
+        newUserID = findViewById(R.id.etIDUpdate);
         save = findViewById(R.id.btnSave);
         updateProfilePic = findViewById(R.id.ivProfileUpdate);
 
@@ -118,7 +119,7 @@ public class UpdateProfile extends AppCompatActivity {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
                 newUserName.setText(userProfile.getUserName());
                 newUserEmail.setText(userProfile.getUserEmail());
-
+                newUserID.setText(userProfile.getUserID());
             }
 
             @Override
@@ -131,9 +132,9 @@ public class UpdateProfile extends AppCompatActivity {
             public void onClick(View view) {
                 String name = newUserName.getText().toString();
                 String email = newUserEmail.getText().toString();
+                String id = newUserID.getText().toString();
 
-
-                UserProfile userProfile = new UserProfile(email, name);
+                UserProfile userProfile = new UserProfile(email, name, id);
                 databaseReference.setValue(userProfile);
 
                 StorageReference imageReference = storageReference.child(firebaseAuth.getUid()).child("Images").child("Profile Pic");
