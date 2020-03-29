@@ -57,7 +57,7 @@ public class SecondActivity extends AppCompatActivity {
                 View toastView = ToastMessage.getView();
                 toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
-                startActivity(new Intent(SecondActivity.this, RegistrationActivity.class));
+                startActivity(new Intent(SecondActivity.this, sports.class));
 
             }
         });
@@ -68,7 +68,7 @@ public class SecondActivity extends AppCompatActivity {
                 View toastView = ToastMessage.getView();
                 toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
-                startActivity(new Intent(SecondActivity.this, RegistrationActivity.class));
+                startActivity(new Intent(SecondActivity.this, logistics.class));
             }
 
         });
@@ -80,7 +80,7 @@ public class SecondActivity extends AppCompatActivity {
                 View toastView = ToastMessage.getView();
                 toastView.setBackgroundResource(R.layout.toast_background);
                 ToastMessage.show();
-                startActivity(new Intent(SecondActivity.this, RegistrationActivity.class));
+                startActivity(new Intent(SecondActivity.this, vrms.class));
 
             }
         });

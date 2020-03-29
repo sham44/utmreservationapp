@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        profilePic = findViewById(R.id.imageView);
+        profilePic = findViewById(R.id.ivProfile);
         profileName = findViewById(R.id.tvProfileName);
         profileEmail = findViewById(R.id.tvProfileEmail);
         profileID = findViewById(R.id.tvProfileID);
@@ -105,9 +105,9 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserProfile userProfile = dataSnapshot.getValue(UserProfile.class);
-                profileName.setText("Username : " + userProfile.getUserName());
-                profileEmail.setText("Email: " + userProfile.getUserEmail());
-                profileID.setText("Matrik : " + userProfile.getUserID());
+                profileName.setText(userProfile.getUserName());
+                profileEmail.setText(userProfile.getUserEmail());
+                profileID.setText(userProfile.getUserID());
             }
 
             @Override

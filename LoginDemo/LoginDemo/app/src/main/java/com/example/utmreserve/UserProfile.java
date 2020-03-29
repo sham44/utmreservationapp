@@ -24,6 +24,7 @@ public class UserProfile {
     }
 
 
+
     public String getUserEmail() {
         return userEmail;
     }
